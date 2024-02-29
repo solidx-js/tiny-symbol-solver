@@ -1,12 +1,14 @@
-export class Symbol {
+export class Symbol<T = any> {
+  static of<K>(key: string, value: K) {
+    const s = new Symbol<K>(key);
+    s.value = value;
+    return s;
+  }
+
   readonly key: string;
-  value: number = NaN;
+  value!: T;
 
-  constructor(key: string, value?: number) {
+  constructor(key: string) {
     this.key = key;
-
-    if (typeof value !== 'undefined') {
-      this.value = value;
-    }
   }
 }
